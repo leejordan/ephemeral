@@ -7,7 +7,7 @@ $( document ).ready(function() {
     for (var i = 0; i < storySplit.length; i++) {
         if (i == 0) {
             word.append('<span class="letter space"></span>');
-            word.append('<span class="letter">' + storySplit[i] + '</span>');
+            word.append('<span class="letter focus">' + storySplit[i] + '</span>');
         } else if (/^\s+$/.test(storySplit[i])) {
             word.append('<span class="letter space"></span>');
         } else {
@@ -17,21 +17,40 @@ $( document ).ready(function() {
 
     word.append('<span id="prompt" class="prompt"></span>');
 
-    anime({
-        targets: document.getElementById('word'),
-        opacity: [
-            { value: '0', duration: 500, delay: 0, easing: 'easeInOutQuad' },
-            { value: '1', duration: 4000, delay: 500, easing: 'easeInOutQuad' },
+    // anime({
+    //     targets: document.getElementById('word'),
+    //     opacity: [
+    //         { value: '0', duration: 500, delay: 0, easing: 'easeInOutQuad' },
+    //         { value: '1', duration: 4000, delay: 500, easing: 'easeInOutQuad' },
+    //     ]
+    // });
+
+    // anime({
+    //     targets: document.getElementById('prompt'),
+    //     opacity: [
+    //         { value: '0', duration: 500, delay: 0, easing: 'easeInOutQuad' },
+    //         { value: '1', duration: 3000, delay: 4500, easing: 'easeInOutQuad' },
+    //     ]
+    // });
+
+    var noticeMe = anime({
+        targets: document.getElementById('word').children[1],
+        color: [
+          { value: '#ccc', duration: 200, delay: 0, easing: 'easeInOutQuad' },
+          { value: '#3333ff', duration: 400, delay: 200, elasticity: 100, easing: 'easeInOutQuad' },
+          { value: '#000', duration: 3000, delay: 200, elasticity: 100, easing: 'easeInOutQuad' }
+        ],
+        translateY: [
+          { value: -20, duration: 400, elasticity: 100, delay: 0, easing: 'easeInOutQuad' },
+          { value: 0, duration: 200, delay: 200, elasticity: 100, easing: 'easeInOutQuad' }
+        ],
+        scale: [
+            { value: '1.05', duration: 100, delay: 400, easing: 'easeInOutQuad' },
+            { value: '1', duration: 30, delay: 0, easing: 'easeInOutQuad' },
         ]
     });
 
-    anime({
-        targets: document.getElementById('prompt'),
-        opacity: [
-            { value: '0', duration: 500, delay: 0, easing: 'easeInOutQuad' },
-            { value: '1', duration: 3000, delay: 4500, easing: 'easeInOutQuad' },
-        ]
-    });
+    //noticeMe.restart();
 
 
     var listener = new window.keypress.Listener();
@@ -39,5 +58,6 @@ $( document ).ready(function() {
     listener.simple_combo("space", function() {
         console.log("space");
         word.find('.letter:first').remove();
+        word.find('.letter:eq(1)').addClass('focus');
     });
 });
