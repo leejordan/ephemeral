@@ -1,0 +1,28 @@
+{
+  "name": "ephemeral",
+  "version": "1.0.0",
+  "description": "Art",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leejordan/ephemeral.git"
+  },
+  "author": "leejordan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leejordan/ephemeral/issues"
+  },
+  "homepage": "https://github.com/leejordan/ephemeral#readme",
+  "scripts": {
+    "build": "node-sass-chokidar --precision 8 --output-style compressed scss/ephemeral.scss css/ephemeral.css",
+    "watch": "node-sass-chokidar --watch --precision 8 --output-style compressed scss/ephemeral.scss css/ephemeral.css",
+    "start": "./node_modules/.bin/http-server . -a localhost -c10"
+  },
+  "devDependencies": {
+    "node-sass-chokidar": "^0.0.3",
+    "http-server": "^0.10.0"
+  }
+}
